@@ -1,0 +1,109 @@
+[tool.poetry]
+name = "transformer"
+version = "1.1.0"
+description = "TensorFlow implementation of the Transformer model"
+license = "MIT"
+
+authors = ["Victor I. Afolabi <javafolabi@gmail.com>"]
+maintainers = [
+  "Victor I. Afolabi <javafolabi@gmail.com>",
+]
+
+readme = "README.md"
+repository = "https://github.com/victor-iyi/transformer"
+keywords = ["tensorflow", "transformer", "deep-learning"]
+
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache 2.0",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+packages = [
+  { include = "transformer", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+
+ # TensorFlow for machine learning (general version).
+tensorflow = { version = "*", markers = "sys_platform != 'darwin'" }
+# TensorFlow for MacOS (with Apple silicon)
+tensorflow-macos = { version = "*", markers = "sys_platform == 'darwin'" }
+# Use Apple silicon acceleration.
+tensorflow-metal = { version = "*", markers = "sys_platform == 'darwin'" }  # , optional = true }
+# For array computing with Python.
+numpy = ">=1.16"
+
+
+[tool.poetry.dev-dependencies]
+# Automatically format Python code to PEP 8 style guide.
+autopep8 = ">=1.7.0"
+# The modular source checker.
+flake8 = ">=3.6.1"
+# Optional static typing for Python
+mypy = ">=0.982"
+# Managing and maintaining pre-commit hooks.
+pre-commit = ">=2.20.0"
+# Python style guide checker.
+pycodestyle = { version = "*", optional = true }
+
+[tool.poetry.urls]
+"Bug Tracker"  = "https://github.com/victor-iyi/transformer/issues"
+
+# Poetry build system. See: https://python-poetry.org/docs/pyproject
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# Style hinting.
+[tool.mypy]
+files = "src"
+mypy_path = "src"
+namespace_packages = true
+explicit_package_bases = true
+strict = true
+check_untyped_defs = true
+ignore_missing_imports = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+implicit_reexport = false
+no_implicit_optional = true
+show_error_codes = true
+show_column_numbers = true
+# show_error_content = true
+warn_unused_configs = true
+warn_unused_ignores = true
+# warn_redundant_cast = true
+warn_return_any = true
+warn_unreachable = true
+disallow_subclassing_any = false
+disallow_untyped_decorators = false
+
+# Pyright Type Checking.
+[tool.pyright]
+reportOptionalCall = "none"
+reportGeneralTypeIssues = "none"
+reportOptionalMemberAccess = "none"
+
+# Coverage report.
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.",
+]

@@ -11,7 +11,9 @@ class PositionalEmbedding(tf.keras.layers.Layer):
         )
         self.pos_encoding = positional_encoding(length=2048, depth=d_model)
 
-    def compute_mask(self, *args: tf.Tensor, **kwargs: tf.Tenosr) -> tf.Tensor | None:
+    def compute_mask(
+        self, *args: tf.Tensor, **kwargs: tf.Tenosr,
+    ) -> tf.Tensor | None:
         """Computes an output mask tensor.
 
         Arguments:
@@ -19,7 +21,8 @@ class PositionalEmbedding(tf.keras.layers.Layer):
           mask (tf.Tensor): Tensor or list of Tensors.
 
         Returns:
-          tf.Tensor - None or a list of Tensor (one per output tensor of the layer).
+          tf.Tensor - None or a list of Tensor
+            (one per output tensor of the layer).
         """
         return self.embedding.compute_mask(*args, **kwargs)
 
@@ -27,7 +30,8 @@ class PositionalEmbedding(tf.keras.layers.Layer):
         length = self.shape(x)[1]
         x = self.embedding(x)
 
-        # This factor sets the relative scale of the embedding and positional_encoding.
+        # This factor sets the relative scale of the embedding
+        # and positional_encoding.
         x *= tf.math.sqrt(tf.cast(self.d_model, tf.float32))
         x = x + self.pos_encoding[tf.newaxis, :length, :]
 

@@ -19,8 +19,8 @@ classifiers = [
   "Intended Audience :: Developers",
   "Intended Audience :: Education",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: Apache 2.0",
-  "License :: OSI Approved :: Apache Software License",
+  "License :: OSI Approved",
+  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Operating System :: MacOS :: MacOS X",
   "Operating System :: POSIX",
@@ -47,18 +47,29 @@ tensorflow-metal = { version = "*", markers = "sys_platform == 'darwin'" }  # , 
 # For array computing with Python.
 numpy = ">=1.16"
 
+[tool.poetry.group.dev]
+optional = true
 
-[tool.poetry.dev-dependencies]
-# Automatically format Python code to PEP 8 style guide.
-autopep8 = ">=1.7.0"
+[tool.poetry.group.dev.dependencies]
+# Optional static typing for Python.
+mypy = "^0.991"
 # The modular source checker.
-flake8 = ">=3.6.1"
-# Optional static typing for Python
-mypy = ">=0.982"
+flake8 = "^6.0.0"
 # Managing and maintaining pre-commit hooks.
-pre-commit = ">=2.20.0"
+pre-commit = "^2.20.0"
 # Python style guide checker.
-pycodestyle = { version = "*", optional = true }
+pycodestyle = "^2.10.0"
+# Automatically format Python code to PEP 8 style guide.
+autopep8 = "^2.0.0"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+# pytest: simple powerful testing with Python.
+pytest = "^7.2.0"
+# Pytest plugin for measuring coverage.
+pytest-cov = "^4.0.0"
 
 [tool.poetry.urls]
 "Bug Tracker"  = "https://github.com/victor-iyi/transformer/issues"

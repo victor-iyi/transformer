@@ -173,3 +173,6 @@ cython_debug/
 # *.vsix
 
 .DS_Store
+data/
+saved_model[s]/
+res/

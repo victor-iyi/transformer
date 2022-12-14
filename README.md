@@ -11,6 +11,8 @@
 
 A TensorFlow implementation of the Transformer model.
 
+![Transformer](./images/transformer.png)
+
 ## Contribution
 
 You are very welcome to modify and use them in your own projects.

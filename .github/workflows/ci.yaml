@@ -17,25 +17,35 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'poetry'
+
       - uses: Gr1N/setup-poetry@v7
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+
       - name: Install dependencies with poetry
         run: poetry install --with dev,test
+
       - name: Lint with flake8
         run: |
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          # exit-zero treats all errors as warnings.
           poetry run flake8 src --exit-zero --statistics
         continue-on-error: true
+
       - name: Static type check with mypy
         run: |
           poetry run mypy src
+
       - name: Test with pytest
         run: |
           poetry run pytest tests
+
       # - name: Run tox
       #   # Run tox using the version of Python in `PATH`.
       #   run: tox -e py

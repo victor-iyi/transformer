@@ -16,7 +16,7 @@ class BaseAttention(tf.keras.layers.Layer):
         """
         super().__init__()
         self.mha = tf.keras.layers.MultiHeadAttention(**kwargs)
-        self.layernorm = tf.keras.layers.LayerNormalization()
+        self.layer_norm = tf.keras.layers.LayerNormalization()
         self.add = tf.keras.layers.Add()
 
 
@@ -46,7 +46,7 @@ class CrossAttention(BaseAttention):
         self.last_attn_scores = attn_scores
 
         x = self.add([query, attn_output])
-        x = self.layernorm(x)
+        x = self.layer_norm(x)
 
         return x
 
@@ -74,7 +74,7 @@ class GlobalSelfAttention(BaseAttention):
         attn_output = self.mha(query=query, value=query, key=query)
 
         x = self.add([query, attn_output])
-        x = self.layernorm(x)
+        x = self.layer_norm(x)
 
         return x
 
@@ -99,5 +99,5 @@ class CausalSelfAttention(BaseAttention):
             use_casual_mask=True,
         )
         x = self.add([query, attn_output])
-        x = self.layernorm(x)
+        x = self.layer_norm(x)
         return x

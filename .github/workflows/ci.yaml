@@ -46,6 +46,6 @@ jobs:
         run: |
           poetry run pytest tests
 
-      - name: Run tox
-        # Run tox using the version of Python in `PATH`.
-        run: poetry run tox -e py
+      # - name: Run tox
+      #   # Run tox using the version of Python in `PATH`.
+      #   run: poetry run tox -e py

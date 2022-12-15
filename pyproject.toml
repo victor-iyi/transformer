@@ -42,7 +42,7 @@ python = ">=3.9"
 tensorflow = { version = "*", markers = "sys_platform != 'darwin'" }
 # TensorFlow for MacOS (with Apple silicon)
 tensorflow-macos = { version = "*", markers = "sys_platform == 'darwin'" }
-# Use Apple silicon acceleration.
+# TensorFlow acceleration for Mac GPUs.
 tensorflow-metal = { version = "*", markers = "sys_platform == 'darwin'" }  # , optional = true }
 # For array computing with Python.
 numpy = ">=1.16"

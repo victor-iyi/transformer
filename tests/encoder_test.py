@@ -8,8 +8,8 @@ from transformer.encoder import EncoderLayer
 @pytest.mark.parametrize(
     'embed_dim,dff',
     (
-        (128, 1024),
-        (512, 2048),
+        (32, 64),
+        (128, 256),
     ),
 )
 def test_encoder_layer(embed_dim: int, dff: int) -> None:
@@ -28,8 +28,8 @@ def test_encoder_layer(embed_dim: int, dff: int) -> None:
 @pytest.mark.parametrize(
     'num_layers,seq_len,embed_dim,dff',
     (
-        (1, 64, 128, 1024),
-        (3, 82, 256, 512),
+        (1, 64, 32, 256),
+        (3, 82, 64, 256),
     ),
 )
 def test_encoder(
@@ -38,7 +38,7 @@ def test_encoder(
     embed_dim: int,
     dff: int,
 ) -> None:
-    batch_size, num_heads, vocab_size = 32, 8, 10000
+    batch_size, num_heads, vocab_size = 32, 8, 1_000
 
     # Sample data (dummy token IDs)
     data = np.random.randint(vocab_size, size=(batch_size, seq_len))

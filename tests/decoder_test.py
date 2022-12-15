@@ -8,8 +8,8 @@ from transformer.decoder import DecoderLayer
 @pytest.mark.parametrize(
     'target_seq_len,context_seq_len,embed_dim',
     (
-        (128, 256, 1024),
-        (64, 128, 2048),
+        (64, 64, 256),
+        (64, 32, 1024),
     ),
 )
 def test_decoder_layer(target_seq_len: int, context_seq_len: int, embed_dim: int) -> None:
@@ -35,8 +35,8 @@ def test_decoder_layer(target_seq_len: int, context_seq_len: int, embed_dim: int
 @pytest.mark.parametrize(
     'num_layers,target_seq_len,context_seq_len,embed_dim',
     (
-        (1, 32, 64, 512),
-        (8, 64, 32, 1024),
+        (1, 32, 64, 256),
+        (8, 64, 32, 512),
     ),
 )
 def test_decoder(
@@ -46,7 +46,7 @@ def test_decoder(
     embed_dim: int,
 ) -> None:
     # Hyperparameters.
-    batch_size, vocab_size, dff = 32, 10_000, 1024
+    batch_size, vocab_size, dff = 32, 1_000, 780
 
     # Sample target.
     target = np.random.randint(

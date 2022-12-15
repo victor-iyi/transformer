@@ -2,11 +2,13 @@
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
+from typing import Union
+
 import numpy as np
 import tensorflow as tf
 
 
-def positional_encoding(length: int, depth: int | float) -> tf.Tensor:
+def positional_encoding(length: int, depth: Union[int, float]) -> tf.Tensor:
     """Calculate the positional encoding for the embedding vectors.
 
     The positional encoding uses sines and cosines at different freqencies

@@ -36,7 +36,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = "~=3.7"
 
  # TensorFlow for machine learning (general version).
 tensorflow = { version = "^2.10.0", markers = "sys_platform != 'darwin'" }
@@ -54,7 +54,7 @@ optional = true
 # Automatically format Python code to PEP 8 style guide.
 autopep8 = "^2.0.0"
 # The modular source checker.
-flake8 = "^6.0.0"
+flake8 = { version = "^6.0.0", python = ">=3.8" }
 # Optional static typing for Python.
 mypy = "^0.991"
 # Managing and maintaining pre-commit hooks.
@@ -62,7 +62,7 @@ pre-commit = "^2.20.0"
 # Python style guide checker.
 pycodestyle = "^2.10.0"
 # Generic viirtualenv management and test cli tool.
-tox = {version = "^4.0.11", python = "3.7"}
+tox = "^4.0.11"
 
 [tool.poetry.group.test]
 optional = true

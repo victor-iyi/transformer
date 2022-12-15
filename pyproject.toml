@@ -51,21 +51,25 @@ numpy = ">=1.16"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-# Optional static typing for Python.
-mypy = "^0.991"
+# Automatically format Python code to PEP 8 style guide.
+autopep8 = "^2.0.0"
 # The modular source checker.
 flake8 = "^6.0.0"
+# Optional static typing for Python.
+mypy = "^0.991"
 # Managing and maintaining pre-commit hooks.
 pre-commit = "^2.20.0"
 # Python style guide checker.
 pycodestyle = "^2.10.0"
-# Automatically format Python code to PEP 8 style guide.
-autopep8 = "^2.0.0"
+# Generic viirtualenv management and test cli tool.
+tox = {version = "^4.0.11", python = "3.7"}
 
 [tool.poetry.group.test]
 optional = true
 
 [tool.poetry.group.test.dependencies]
+# A coverage plugin to provide sensible default settings.
+covdefaults = "^2.2.2"
 # pytest: simple powerful testing with Python.
 pytest = "^7.2.0"
 # Pytest plugin for measuring coverage.
@@ -118,3 +122,6 @@ exclude_lines = [
   "raise NotImplementedError",
   "if __name__ == .__main__.",
 ]
+
+[tool.coverage.run]
+plugin = "covdefaults"

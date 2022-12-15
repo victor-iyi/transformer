@@ -48,19 +48,19 @@ tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy 
 
 [[package]]
 name = "autopep8"
-version = "2.0.0"
+version = "2.0.1"
 description = "A tool that automatically formats Python code to conform to the PEP 8 style guide"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6"
 files = [
-    {file = "autopep8-2.0.0-py2.py3-none-any.whl", hash = "sha256:ad924b42c2e27a1ac58e432166cc4588f5b80747de02d0d35b1ecbd3e7d57207"},
-    {file = "autopep8-2.0.0.tar.gz", hash = "sha256:8b1659c7f003e693199f52caffdc06585bb0716900bbc6a7442fd931d658c077"},
+    {file = "autopep8-2.0.1-py2.py3-none-any.whl", hash = "sha256:be5bc98c33515b67475420b7b1feafc8d32c1a69862498eda4983b45bffd2687"},
+    {file = "autopep8-2.0.1.tar.gz", hash = "sha256:d27a8929d8dcd21c0f4b3859d2d07c6c25273727b98afc984c039df0f0d86566"},
 ]
 
 [package.dependencies]
-pycodestyle = ">=2.9.1"
-tomli = "*"
+pycodestyle = ">=2.10.0"
+tomli = {version = "*", markers = "python_version < \"3.11\""}
 
 [[package]]
 name = "backports-weakref"
@@ -152,6 +152,21 @@ files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
+
+[[package]]
+name = "covdefaults"
+version = "2.2.2"
+description = "A coverage plugin to provide sensible default settings"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "covdefaults-2.2.2-py2.py3-none-any.whl", hash = "sha256:10c193cbf290675961a09166d7cdea8a783655e04009f5493d50685fe6ec82f3"},
+    {file = "covdefaults-2.2.2.tar.gz", hash = "sha256:e543862ee0347769b47b27fa586d690e6b91587a3dcaaf8552fcfb1fac03d061"},
+]
+
+[package.dependencies]
+coverage = ">=6.0.2"
 
 [[package]]
 name = "coverage"
@@ -1557,4 +1572,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9"
-content-hash = "b472b7ae1c4a5c437451dd06ace7ee3c960a7a8d5311d6c44239e8a95475fcc6"
+content-hash = "57ee8a83f5849c6d9b64e4c2ab4109da4b07dde0e32f861540b171e1f6fa92bb"

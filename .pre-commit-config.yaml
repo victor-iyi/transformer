@@ -22,7 +22,7 @@ repos:
     rev: 6.0.0
     hooks:
       - id: flake8
-        args: [--ignore, "E265,E501,W503,W504"]
+        args: [--extend-ignore, "E265,E501,W503,W504"]
   - repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v2.0.0
     hooks:

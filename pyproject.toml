@@ -36,7 +36,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9, <3.11"
+python = ">=3.8, <3.11"
 
  # TensorFlow for machine learning (general version).
 tensorflow = { version = "^2.10.0", markers = "sys_platform != 'darwin'" }

@@ -2,6 +2,8 @@
 #
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
+from typing import Optional
+
 import tensorflow as tf
 from transformer.utils import positional_encoding
 
@@ -24,7 +26,7 @@ class PositionalEmbedding(tf.keras.layers.Layer):
         )
         self.pos_encoding = positional_encoding(length=length, depth=d_model)
 
-    def compute_mask(self, *args: tf.Tensor, **kwargs: tf.Tensor) -> tf.Tensor | None:
+    def compute_mask(self, *args: tf.Tensor, **kwargs: tf.Tensor) -> Optional[tf.Tensor]:
         """Computes an output mask tensor.
 
         Arguments:

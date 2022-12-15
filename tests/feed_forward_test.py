@@ -20,7 +20,7 @@ def test_feed_forward(seq_length: int, embed_dim: int) -> None:
     )
 
     # Create cross attention with 2 attention heads.
-    sample_ffn = FeedForward(d_model=512, dff=2048)
+    sample_ffn = FeedForward(d_model=embed_dim, dff=2048)
     output = sample_ffn(embedding)
 
     assert output.shape == (batch_size, seq_length, embed_dim)

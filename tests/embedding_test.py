@@ -1,5 +1,5 @@
+import numpy as np
 import pytest
-import tensorflow as tf
 from transformer.embedding import PositionalEmbedding
 from transformer.utils import positional_encoding
 
@@ -27,10 +27,10 @@ def test_positional_encoding(seq_length: int, embed_dim: int) -> None:
 )
 def test_positional_embedding(batch_size: int, seq_length: int, embed_dim: int) -> None:
     """Positional embedding outputs the correct shape."""
+    vocab_size = 10_000
     # Random fake data.
-    data = tf.random.normal(shape=(batch_size, seq_length))
-
+    data = np.random.randint(vocab_size, size=(batch_size, seq_length))
     # Create positional encoding with vocab size of 10k.
-    embed = PositionalEmbedding(vocab_size=10_000, d_model=embed_dim)
+    embed = PositionalEmbedding(vocab_size=vocab_size, d_model=embed_dim)
 
     assert embed(data).shape == (batch_size, seq_length, embed_dim)

@@ -22,7 +22,7 @@ class FeedForward(tf.keras.layers.Layer):
             tf.keras.layers.Dense(d_model),
             tf.keras.layers.Dropout(dropout),
         ])
-        self.add = tf.keras.Add()
+        self.add = tf.keras.layers.Add()
         self.layer_norm = tf.keras.layers.LayerNormalization()
 
     def call(self, x: tf.Tensor) -> tf.Tensor:

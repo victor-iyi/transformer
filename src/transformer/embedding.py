@@ -7,7 +7,7 @@ from transformer.utils import positional_encoding
 
 
 class PositionalEmbedding(tf.keras.layers.Layer):
-    def __int__(self, vocab_size: int, d_model: int, length: int = 2048) -> None:
+    def __init__(self, vocab_size: int, d_model: int, length: int = 2048) -> None:
         """Positional embedding layer that looks-up a token's embedding vector
         and adds the position vector.
 
@@ -24,7 +24,7 @@ class PositionalEmbedding(tf.keras.layers.Layer):
         )
         self.pos_encoding = positional_encoding(length=length, depth=d_model)
 
-    def compute_mask(self, *args: tf.Tensor, **kwargs: tf.Tenosr) -> tf.Tensor | None:
+    def compute_mask(self, *args: tf.Tensor, **kwargs: tf.Tensor) -> tf.Tensor | None:
         """Computes an output mask tensor.
 
         Arguments:

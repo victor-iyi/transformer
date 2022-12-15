@@ -96,7 +96,7 @@ class CausalSelfAttention(BaseAttention):
             query=query,
             key=query,
             value=query,
-            use_casual_mask=True,
+            use_causal_mask=True,
         )
         x = self.add([query, attn_output])
         x = self.layer_norm(x)

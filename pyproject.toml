@@ -43,7 +43,7 @@ tensorflow = { version = "*", markers = "sys_platform != 'darwin'" }
 # TensorFlow for MacOS (with Apple silicon)
 tensorflow-macos = { version = "*", markers = "sys_platform == 'darwin'" }
 # TensorFlow acceleration for Mac GPUs.
-tensorflow-metal = { version = "*", markers = "sys_platform == 'darwin'" }  # , optional = true }
+tensorflow-metal = { version = "*", markers = "sys_platform == 'darwin'", optional = true }
 # For array computing with Python.
 numpy = ">=1.16"
 
@@ -82,6 +82,12 @@ pytest-cov = "^4.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+# Pytests
+[tool.pytest.ini_options]
+filterwarnings = [
+  "ignore::DeprecationWarning",
+]
 
 # Style hinting.
 [tool.mypy]

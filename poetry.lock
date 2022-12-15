@@ -1320,7 +1320,7 @@ name = "tensorflow-metal"
 version = "0.7.0"
 description = "TensorFlow acceleration for Mac GPUs."
 category = "main"
-optional = false
+optional = true
 python-versions = "*"
 files = [
     {file = "tensorflow_metal-0.7.0-cp310-cp310-macosx_12_0_arm64.whl", hash = "sha256:57610da64e94bd562542364805d1a582090948889eb59d3c0fb3055f3fa9568c"},
@@ -1572,4 +1572,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9"
-content-hash = "57ee8a83f5849c6d9b64e4c2ab4109da4b07dde0e32f861540b171e1f6fa92bb"
+content-hash = "bbdfa0102aad1e10b23e4d751417d3d5912d6d1d770e455159ac75952450a8b9"

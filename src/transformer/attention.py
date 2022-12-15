@@ -9,10 +9,10 @@ class BaseAttention(tf.keras.layers.Layer):
     """Base attention consists of a MultiHeadAttention, LayerNormalization and Add layer."""
 
     def __init__(self, **kwargs) -> None:  # type: ignore[no-untyped-def]
-        """
+        """Base class for MultiHeadAttention.
+
         Arguments:
             See arguments for `tf.keras.layers.MultiHeadAttention`.
-
         """
         super().__init__()
         self.mha = tf.keras.layers.MultiHeadAttention(**kwargs)
@@ -76,4 +76,28 @@ class GlobalSelfAttention(BaseAttention):
         x = self.add([query, attn_output])
         x = self.layernorm(x)
 
+        return x
+
+
+class CasualSelfAttention(BaseAttention):
+    """Self attention for the output sequence."""
+
+    def call(self, x: tf.Tensor) -> tf.Tensor:
+        """Auto-regressive self attention.
+
+        Arguments:
+            x (tf.Tensor): Tensor or list of Tensor of shape
+                `(batch_size, seq_length, embedding_dim)`.
+
+        Returns:
+            tf.Tensor - A tensor of shape `(batch_size, seq_length, embedding_dim)`.
+        """
+        attn_output = self.mha(
+            query=x,
+            key=x,
+            value=x,
+            use_casual_mask=True,
+        )
+        x = self.add([x, attn_output])
+        x = self.layernorm(x)
         return x

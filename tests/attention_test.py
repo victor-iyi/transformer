@@ -1,5 +1,6 @@
 import pytest
 import tensorflow as tf
+from transformer.attention import CasualSelfAttention
 from transformer.attention import CrossAttention
 from transformer.attention import GlobalSelfAttention
 
@@ -49,5 +50,27 @@ def test_global_attention(seq_length: int, embed_dim: int) -> None:
     # Create self attention layer with 2 attention heads.
     gsa = GlobalSelfAttention(num_heads=2, key_dim=embed_dim)
     output = gsa(query=embedding)
+
+    assert output.shape == (batch_size, seq_length, embed_dim)
+
+
+@pytest.mark.parametrize(
+    'seq_length,embed_dim',
+    (
+        (64, 256),
+        (512, 128),
+    ),
+)
+def test_casual_attention(seq_length: int, embed_dim: int) -> None:
+    """Test casual self-attention layer's output shape."""
+    batch_size = 32
+    # Create a dummy embedding.
+    embedding = tf.random.normal(
+        shape=(batch_size, seq_length, embed_dim),
+    )
+
+    # Create casual self attention layer with 2 attention heads.
+    csa = CasualSelfAttention(num_heads=2, key_dim=embed_dim)
+    output = csa(embedding)
 
     assert output.shape == (batch_size, seq_length, embed_dim)

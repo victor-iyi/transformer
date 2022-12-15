@@ -7,6 +7,7 @@
 
 # Transformer
 
+[![CI](https://github.com/victor-iyi/transformer/actions/workflows/ci.yaml/badge.svg)](https://github.com/victor-iyi/transformer/actions/workflows/ci.yaml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/victor-iyi/transformer/main.svg)](https://results.pre-commit.ci/latest/github/victor-iyi/transformer/main)
 
 A TensorFlow implementation of the Transformer model.

@@ -39,9 +39,9 @@ packages = [
 python = ">=3.9"
 
  # TensorFlow for machine learning (general version).
-tensorflow = { version = "*", markers = "sys_platform != 'darwin'" }
+tensorflow = { version = "^2.10.0", markers = "sys_platform != 'darwin'" }
 # TensorFlow for MacOS (with Apple silicon)
-tensorflow-macos = { version = "*", markers = "sys_platform == 'darwin'" }
+tensorflow-macos = { version = "^2.10.0", markers = "sys_platform == 'darwin'" }
 # TensorFlow acceleration for Mac GPUs.
 tensorflow-metal = { version = "*", markers = "sys_platform == 'darwin'", optional = true }
 # For array computing with Python.

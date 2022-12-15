@@ -36,7 +36,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = ">=3.9, <3.11"
 
  # TensorFlow for machine learning (general version).
 tensorflow = { version = "^2.10.0", markers = "sys_platform != 'darwin'" }
@@ -62,7 +62,7 @@ pre-commit = "^2.20.0"
 # Python style guide checker.
 pycodestyle = "^2.10.0"
 # Generic viirtualenv management and test cli tool.
-tox = { version = "^4.0.11", python = "~=3.7" }
+tox = { version = "^4.0.11", python = "~=3.7, <3.11" }
 
 [tool.poetry.group.test]
 optional = true

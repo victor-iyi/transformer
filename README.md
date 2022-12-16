@@ -34,7 +34,7 @@ successively generating new representations.
 ![Transformer for Machine Translation](./images/transformer-for-machine-translation.gif)
 *Source: [Google AI Blog]*
 
-## Setup
+## Usage
 
 The `Transformer` class has a simple API.
 

@@ -10,10 +10,11 @@ def test_load_data() -> None:
     expected_pt_seq, expected_en_seq = 71, 78
 
     # Download and process data.
-    (
-        (train_ds, val_ds),
-        (input_vocab_size, target_vocab_size),
-    ) = load_data(batch_size=batch_size)
+    (train_ds, val_ds), tokenizers = load_data(batch_size=batch_size)
+
+    # Extract the vocabulary sizes.
+    input_vocab_size = tokenizers.pt.get_vocab_size().numpy()
+    target_vocab_size = tokenizers.en.get_vocab_size().numpy()
 
     # Check the vocab size.
     assert input_vocab_size == 7765

@@ -23,11 +23,12 @@ def train() -> int:
     num_layers, num_heads = 4, 8
     batch_size, epochs, dropout = 64, 10, 0.1
 
-    # Load data.
-    (
-        (train_ds, val_ds),
-        (input_vocab_size, target_vocab_size),
-    ) = load_data(batch_size)
+    # Download and process data.
+    (train_ds, val_ds), tokenizers = load_data(batch_size=batch_size)
+
+    # Extract the vocabulary sizes.
+    input_vocab_size = tokenizers.pt.get_vocab_size().numpy()
+    target_vocab_size = tokenizers.en.get_vocab_size().numpy()
 
     # Optimizer.
     learning_rate = CustomSchedule(d_model)

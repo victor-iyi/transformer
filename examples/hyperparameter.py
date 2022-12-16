@@ -20,6 +20,7 @@ HP_DROPOUT = hp.HParam('dropout', hp.RealInterval([0.1, 0.2]))
 BASE_DIR: str = os.path.dirname(os.path.dirname(__file__))
 LOG_DIR: str = os.path.join(BASE_DIR, 'logs/hparam_tunning')
 EPOCHS: int = 5
+BATCH_SIZE: int = 64
 
 
 def run(
@@ -104,11 +105,12 @@ def experiment() -> int:
             metrics=[hp.Metric(masked_accuracy, display_name='Accuracy')],
         )
 
-    # Load data.
-    (
-        (train_ds, val_ds),
-        (input_vocab_size, target_vocab_size),
-    ) = load_data(batch_size=64)
+    # Download and process data.
+    (train_ds, val_ds), tokenizers = load_data(batch_size=BATCH_SIZE)
+
+    # Extract the vocabulary sizes.
+    input_vocab_size = tokenizers.pt.get_vocab_size().numpy()
+    target_vocab_size = tokenizers.en.get_vocab_size().numpy()
 
     # Start Hyperparameter tunning.
     session = 0

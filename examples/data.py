@@ -5,13 +5,9 @@
 import os
 from typing import Any
 from typing import Tuple
-from typing import TypeVar
 
 import tensorflow as tf
 import tensorflow_datasets as tfds
-
-# Tokenizer.
-Tokenizer = TypeVar('Tokenizer')
 
 # Data path.
 BASE_DIR: str = os.path.dirname(os.path.dirname(__file__))

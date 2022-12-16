@@ -17,7 +17,7 @@ def load_data(
     tokenizer_name: str = 'ted_hrlr_translate_pt_en_converter',
     cache_dir: str = 'data', cache_sub_dir: str = 'translate',
     max_tokens: int = 128, batch_size: int = 64, buffer_size: int = 20_000,
-) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
+) -> Tuple[Tuple[tf.data.Dataset, tf.data.Dataset], Tuple[int, int]]:
     """Download, tokenize and prepare data into train & validation batches.
 
     Arguments:
@@ -37,7 +37,8 @@ def load_data(
             Defaults to 20,000.
 
     Returns:
-        Tuple[tf.data.Dataset, tf.data.Dataset] - Train & validation dataset.
+        ((tf.data.Dataset, tf.data.Dataset), (int, int)):
+            (Train dataset, validation dataset), (input_vocab_size, target_vocab_size)
     """
     # Load dataset from tensorflow-datasets.
     examples, _ = tfds.load(name, with_info=True, as_supervised=True)
@@ -94,15 +95,23 @@ def load_data(
             .prefetch(buffer_size=tf.data.AUTOTUNE)
         )
 
+    # Make train & validation mini batches.
     train_batches = make_batches(train_examples)
     val_batches = make_batches(val_examples)
 
-    return train_batches, val_batches
+    # Extract the vocabulary sizes.
+    input_vocab_size = tokenizers.pt.get_vocab_size().numpy()
+    target_vocab_size = tokenizers.en.get_vocab_size().numpy()
+
+    return (train_batches, val_batches), (input_vocab_size, target_vocab_size)
 
 
 if __name__ == '__main__':
     # Load train & validation data.
-    train_batches, val_batches = load_data()
+    (train_batches, val_batches), (input_vocab_size, target_vocab_size) = load_data()
+
+    print(f'Input vocab size: {input_vocab_size:,}')
+    print(f'Target vocab size: {target_vocab_size}')
 
     print(f'{train_batches = }')
     print(f'{val_batches = }')

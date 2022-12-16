@@ -75,6 +75,12 @@ pytest = "^7.2.0"
 # Pytest plugin for measuring coverage.
 pytest-cov = "^4.0.0"
 
+[tool.poetry.group.example]
+optional = true
+
+[tool.poetry.group.example.dependencies]
+tensorflow-datasets = "^4.7.0"
+
 [tool.poetry.urls]
 "Bug Tracker"  = "https://github.com/victor-iyi/transformer/issues"
 

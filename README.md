@@ -39,6 +39,8 @@ successively generating new representations.
 The `Transformer` class has a simple API.
 
 ```python
+from transformer import Transofrmer
+
 transformer = Transformer(
   num_layers=5,
   d_model=512,
@@ -48,8 +50,14 @@ transformer = Transformer(
   dropout=0.2,
 )
 
+# Input shape: `(batch_size, input_seq_len)`.
+# Target shape: `(batch_size, target_seq_len)`.
+
 output = transformer((target_token, input_token))
+# Output shape: `(batch_size, input_seq_len, target_vocab_size)`.
 ```
+
+> *See [`examples/`] for more code samples*.
 
 The architecture is made up of some two essential layers:
 
@@ -130,6 +138,7 @@ The layer returns the average across all the `values`, weighted by the
 [Google AI Blog]: https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html
 [Translate text with transformer models]: https://www.tensorflow.org/text/tutorials/transformer
 [self-attention]: https://developers.google.com/machine-learning/glossary#self-attention
+[`examples/`]: ./examples/
 
 ## Contribution
 

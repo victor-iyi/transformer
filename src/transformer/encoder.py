@@ -9,8 +9,11 @@ from transformer.feed_forward import FeedForward
 
 
 class EncoderLayer(tf.keras.layers.Layer):
-    """The encoder contains a stack of `N` encoder layers. Each encoder layer
-    contains `GlobalSelfAttention` and `FeedForward` layer."""
+    """The encoder contains a stack of `N` encoder layers.
+
+    Each encoder layer contains `GlobalSelfAttention` and `FeedForward`
+    layer.
+    """
 
     def __init__(
         self, *,

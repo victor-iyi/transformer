@@ -10,8 +10,8 @@ from transformer.feed_forward import FeedForward
 
 
 class DecoderLayer(tf.keras.layers.Layer):
-    """Decoder layer consists of `CausalSelfAttention`, `CrossAttention`
-    and `FeedForward` layer."""
+    """Decoder layer consists of `CausalSelfAttention`, `CrossAttention` and
+    `FeedForward` layer."""
 
     def __init__(
         self, *,

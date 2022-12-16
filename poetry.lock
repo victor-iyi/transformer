@@ -246,6 +246,26 @@ files = [
 ]
 
 [[package]]
+name = "docformatter"
+version = "1.5.1"
+description = "Formats docstrings to follow PEP 257"
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "docformatter-1.5.1-py3-none-any.whl", hash = "sha256:05d6e4c528278b3a54000e08695822617a38963a380f5aef19e12dd0e630f19a"},
+    {file = "docformatter-1.5.1.tar.gz", hash = "sha256:3fa3cdb90cdbcdee82747c58410e47fc7e2e8c352b82bed80767915eb03f2e43"},
+]
+
+[package.dependencies]
+charset_normalizer = ">=2.0.0,<3.0.0"
+tomli = {version = ">=2.0.0,<3.0.0", markers = "python_version >= \"3.7\""}
+untokenize = ">=0.1.1,<0.2.0"
+
+[package.extras]
+tomli = ["tomli (<2.0.0)"]
+
+[[package]]
 name = "etils"
 version = "0.9.0"
 description = "Collection of common python utils"
@@ -1409,25 +1429,6 @@ files = [
 ]
 
 [[package]]
-name = "tensorflow-hub"
-version = "0.12.0"
-description = "TensorFlow Hub is a library to foster the publication, discovery, and consumption of reusable parts of machine learning models."
-category = "dev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "tensorflow_hub-0.12.0-py2.py3-none-any.whl", hash = "sha256:822fe5f7338c95efcc3a534011c6689e4309ba2459def87194179c4de8a6e1fc"},
-]
-
-[package.dependencies]
-numpy = ">=1.12.0"
-protobuf = ">=3.8.0"
-
-[package.extras]
-make-image-classifier = ["keras-preprocessing[image]"]
-make-nearest-neighbour-index = ["annoy", "apache-beam"]
-
-[[package]]
 name = "tensorflow-io-gcs-filesystem"
 version = "0.28.0"
 description = "TensorFlow IO"
@@ -1535,33 +1536,6 @@ six = ">=1.15.0"
 wheel = ">=0.35,<1.0"
 
 [[package]]
-name = "tensorflow-text"
-version = "2.11.0"
-description = "TF.Text is a TensorFlow library of text related ops, modules, and subgraphs."
-category = "dev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "tensorflow_text-2.11.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:c9d4797e331da37419f2b19159fbc0f125ed60467340e9a209ab8f8d65856704"},
-    {file = "tensorflow_text-2.11.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b4abede4191820ae6d5a7c74f02c335a5f2e2df174eaa38b481b2b82a3330152"},
-    {file = "tensorflow_text-2.11.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:49194f85e03a2e3f017ac8e0e3d3927104fa20e6e883b43087cff032fe2cbe14"},
-    {file = "tensorflow_text-2.11.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a3ea14efeb1d627ed5098e791e95bb98ee6f9f928f9eda785205e184cc20b428"},
-    {file = "tensorflow_text-2.11.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:a207ceea4c71a932c35e4d208d7b8c3edc65a5ba0eebfdc9233fc8da546625c9"},
-    {file = "tensorflow_text-2.11.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:506fbea82a1ec566d7d0f771adad589c44727d904311103169466d88236ec2c8"},
-    {file = "tensorflow_text-2.11.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:cf0033bf47872b57d46f78d7058db5676f396a9327fa4d063a2c73cce43586ae"},
-    {file = "tensorflow_text-2.11.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:56693df33461ab0e7f32549010ca38a8d01291fd67142e0396d0aeb9fcad2e09"},
-]
-
-[package.dependencies]
-tensorflow = {version = ">=2.11.0,<2.12", markers = "platform_machine != \"arm64\" or platform_system != \"Darwin\""}
-tensorflow-hub = ">=0.8.0"
-tensorflow-macos = {version = ">=2.11.0,<2.12", markers = "platform_machine == \"arm64\" and platform_system == \"Darwin\""}
-
-[package.extras]
-tensorflow-cpu = ["tensorflow-cpu (>=2.11.0,<2.12)"]
-tests = ["absl-py", "pytest", "tensorflow-datasets (>=3.2.0)"]
-
-[[package]]
 name = "termcolor"
 version = "2.1.1"
 description = "ANSI color formatting for output in terminal"
@@ -1659,6 +1633,17 @@ python-versions = ">=3.7"
 files = [
     {file = "typing_extensions-4.4.0-py3-none-any.whl", hash = "sha256:16fa4864408f655d35ec496218b85f79b3437c829e93320c7c9215ccfd92489e"},
     {file = "typing_extensions-4.4.0.tar.gz", hash = "sha256:1511434bb92bf8dd198c12b1cc812e800d4181cfcb867674e0f8279cc93087aa"},
+]
+
+[[package]]
+name = "untokenize"
+version = "0.1.1"
+description = "Transforms tokens into original source code (while preserving whitespace)."
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "untokenize-0.1.1.tar.gz", hash = "sha256:3865dbbbb8efb4bb5eaa72f1be7f3e0be00ea8b7f125c69cbd1f5fda926f37a2"},
 ]
 
 [[package]]
@@ -1825,4 +1810,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8, <3.11"
-content-hash = "f1cc2fc59895f3a54dc28f6ff66c6fa81eba3498eaccfea0c8de58e8a17a8ade"
+content-hash = "48a9b6ca76801cf3cbcaed983746e28a570e1c177c823d32c5513ef62934bc58"

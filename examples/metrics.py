@@ -2,8 +2,8 @@ import tensorflow as tf
 
 
 class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
-    """Custom learning rate scheduler according to the formula from the original
-    Transformer paper."""
+    """Custom learning rate scheduler according to the formula from the
+    original Transformer paper."""
 
     def __init__(self, d_model: int, warmup_steps: int = 4000) -> None:
         super().__init__()

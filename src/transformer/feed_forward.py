@@ -26,7 +26,8 @@ class FeedForward(tf.keras.layers.Layer):
         self.layer_norm = tf.keras.layers.LayerNormalization()
 
     def call(self, x: tf.Tensor) -> tf.Tensor:
-        """Feed forward layer with a residual add layer and a normalization layer.
+        """Feed forward layer with a residual add layer and a normalization
+        layer.
 
         Arguments:
             x (tf.Tensor): Word embedding of shape `(batch_size, seq_length, embed_dim)`.

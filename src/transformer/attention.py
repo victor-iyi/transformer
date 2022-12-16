@@ -6,7 +6,8 @@ import tensorflow as tf
 
 
 class BaseAttention(tf.keras.layers.Layer):
-    """Base attention consists of a MultiHeadAttention, LayerNormalization and Add layer."""
+    """Base attention consists of a MultiHeadAttention, LayerNormalization and
+    Add layer."""
 
     def __init__(self, **kwargs) -> None:  # type: ignore[no-untyped-def]
         """Base class for MultiHeadAttention.
@@ -24,7 +25,8 @@ class CrossAttention(BaseAttention):
     """The Cross Attention Layer connects the encoder and the decoder."""
 
     def call(self, query: tf.Tensor, context: tf.Tensor) -> tf.Tensor:
-        """Perform a fuzzy, differentiable, vectorized lookup of a query within a context.
+        """Perform a fuzzy, differentiable, vectorized lookup of a query within
+        a context.
 
         Arguments:
             query (tf.Tensor): Query vector.
@@ -56,8 +58,8 @@ class GlobalSelfAttention(BaseAttention):
     other sequence element, with only a few operations, and all the outputs can
     be computed in parallel.
 
-    The query `x`, is passed to the `MultiHeadAttention` layer as the `query`,
-    `key` & `value`.
+    The query `x`, is passed to the `MultiHeadAttention` layer as the
+    `query`, `key` & `value`.
     """
 
     def call(self, query: tf.Tensor) -> tf.Tensor:

@@ -28,7 +28,6 @@ def load_tokenizer(
             Defaults to `translate/` i.e `{cache_dir/cache_sub_dir}`.
 
     Returns:
-
     """
     # Tokenizer path.
     origin = f'https://storage.googleapis.com/download.tensorflow.org/models/{tokenizer_name}.zip'

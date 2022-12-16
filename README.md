@@ -9,6 +9,7 @@
 
 [![CI](https://github.com/victor-iyi/transformer/actions/workflows/ci.yaml/badge.svg)](https://github.com/victor-iyi/transformer/actions/workflows/ci.yaml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/victor-iyi/transformer/main.svg)](https://results.pre-commit.ci/latest/github/victor-iyi/transformer/main)
+[![style | google](https://img.shields.io/badge/%20style-google-3666d6.svg)](https://google.github.io/styleguide/pyguide.html#s3.8-comments-and-docstrings)
 
 A TensorFlow implementation of the Transformer model.
 

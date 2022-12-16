@@ -1,9 +1,11 @@
+import pytest
 import tensorflow as tf
 from data import load_tokenizer
 from transformer import Transformer
 from translate import Translator
 
 
+@pytest.mark.skip(reason='Not yet tested.')
 def test_translate() -> None:
     tokenizers = load_tokenizer()
     transformer = Transformer(

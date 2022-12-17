@@ -33,22 +33,28 @@ repos:
         additional_dependencies: [types-all, typing_extensions]
 
   - repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v2.0.0
+    rev: v2.0.1
     hooks:
       - id: autopep8
         args: [--diff, --max-line-length=120, --aggressive]
 
   - repo: https://github.com/PyCQA/docformatter
-    rev: v1.5.0
+    rev: v1.5.1
     hooks:
       - id: docformatter
-        args: [--in-place]
+        args: [src --in-place]
+
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.1.1
+    hooks:
+      - id: pydocstyle
+        args: [src]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.0.0
     hooks:
       - id: flake8
-        args: [--extend-ignore, "E265,E501,W503,W504"]
+        args: [--extend-ignore, "E501,W503,W504"]
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.3.1
@@ -63,14 +69,14 @@ repos:
         args: [--py38-plus]
 
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.3.0
+    rev: v2.4.0
     hooks:
       - id: add-trailing-comma
         args: [--py36-plus]
 
 
   - repo: https://github.com/python-poetry/poetry
-    rev: 1.3.1
+    rev: 1.3.0
     hooks:
       - id: poetry-check
       # - id: poetry-lock

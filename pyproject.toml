@@ -54,15 +54,19 @@ optional = true
 # Automatically format Python code to PEP 8 style guide.
 autopep8 = "^2.0.0"
 # The modular source checker.
-flake8 = { version = "*", python = ">=3.8" }
+flake8 = {version = "^6.0.0", python = ">=3.8.1"}
 # Optional static typing for Python.
 mypy = "^0.991"
 # Managing and maintaining pre-commit hooks.
 pre-commit = "^2.20.0"
-# Python style guide checker.
-pycodestyle = "^2.10.0"
 # Generic viirtualenv management and test cli tool.
 tox = { version = "^4.0.11", python = "~=3.7, <3.11" }
+# Python style guide checker.
+pydocstyle = {extras = ["toml"], version = "^6.1.1"}
+# Python Library for Tom's Obvious, Minimal Language.
+toml = "^0.10.2"
+# Formats docstring to follow PEP 257.
+docformatter = {version = "^1.5.1", extras = ["tomli"]}
 
 [tool.poetry.group.test]
 optional = true
@@ -95,6 +99,30 @@ filterwarnings = [
   "ignore::DeprecationWarning",
 ]
 
+[tool.pydocstyle]
+convention = "google"
+add_ignore = [
+  # Missing docstring in public module.
+  "D100",
+  # Missing docstring in public class.
+  "D101",
+  # Missing docstring in public package.
+  "D104",
+  # 1 blank line required between summary line and description.
+  "D205",
+  # First line should end with a period, question mark, or exclamation point.
+  "D415",
+]
+
+# Docformatter.
+[tool.docformatter]
+in-place = true
+check = true
+recursive = true
+blank = true
+close-quotes-on-newline = true
+# wrap-summaries = 30
+
 # Style hinting.
 [tool.mypy]
 files = "src"
@@ -118,11 +146,6 @@ warn_return_any = true
 warn_unreachable = true
 disallow_subclassing_any = false
 disallow_untyped_decorators = false
-
-# Docformatter.
-[tool.docformatter]
-recursive = true
-blank = true
 
 # Pyright Type Checking.
 [tool.pyright]

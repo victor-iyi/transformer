@@ -11,7 +11,8 @@ from transformer.feed_forward import FeedForward
 
 class DecoderLayer(tf.keras.layers.Layer):
     """Decoder layer consists of `CausalSelfAttention`, `CrossAttention` and
-    `FeedForward` layer."""
+    `FeedForward` layer.
+    """
 
     def __init__(
         self, *,
@@ -27,6 +28,7 @@ class DecoderLayer(tf.keras.layers.Layer):
             num_heads (int): Number of `MultiHeadAttention` heads.
             dff (int): Number of neurons for the feed forward layer.
             dropout (float, optional): Dropout rate. Defaults to 0.1.
+
         """
         super().__init__()
 
@@ -58,6 +60,7 @@ class DecoderLayer(tf.keras.layers.Layer):
 
         Returns:
             tf.Tensor - Tensor of shape `(batch_size, target_seq_len, d_model)`.
+
         """
         x = query
 
@@ -96,6 +99,7 @@ class Decoder(tf.keras.layers.Layer):
             dff (int): Number of neurons for the feed forward layer.
             vocab_size (int): Vocabulary size.
             dropout (float, optional): Dropout rate. Defaults to 0.1.
+
         """
         super().__init__()
 
@@ -131,6 +135,7 @@ class Decoder(tf.keras.layers.Layer):
 
         Returns:
             tf.Tensor - A tensor of shape `(batch_size, seq_len, d_model)`.
+
         """
         # `query` is token-IDs shape (batch_size, target_seq_len)
         x = self.pos_embedding(query)  # (batch_size, target_seq_len, d_model).

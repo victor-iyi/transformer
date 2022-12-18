@@ -28,6 +28,8 @@ def load_tokenizer(
             Defaults to `translate/` i.e `{cache_dir/cache_sub_dir}`.
 
     Returns:
+        Translator: Returns pre-trained Portuguese to English tokenizer.
+
     """
     # Tokenizer path.
     origin = f'https://storage.googleapis.com/download.tensorflow.org/models/{tokenizer_name}.zip'
@@ -76,6 +78,7 @@ def load_data(
     Returns:
         ((tf.data.Dataset, tf.data.Dataset), (int, int)):
             (Train dataset, validation dataset), (input_vocab_size, target_vocab_size)
+
     """
     # Load dataset from tensorflow-datasets.
     examples, _ = tfds.load(name, with_info=True, as_supervised=True)
@@ -101,6 +104,7 @@ def load_data(
             Tuple[Tuple[tf.Tensor, tf.Tensor], tf.Tensor]:
                 The portuguese tokens and the english token pair, and the
                 english labels shifted by one.
+
         """
         pt = tokenizers.pt.tokenize(pt)  # Output is ragged.
         pt = pt[:, :max_tokens]  # Trim to max_token.
@@ -114,6 +118,15 @@ def load_data(
         return (pt_tokens, en_inputs), en_labels
 
     def make_batches(ds: tf.data.Dataset) -> tf.data.Dataset:
+        """Create mini batch and pre-process data.
+
+        Arguments:
+            ds (tf.data.Dataset): Dataset to be processed.
+
+        Returns:
+            tf.data.Dataset: Processed dataset.
+
+        """
         return (
             ds
             .shuffle(buffer_size)

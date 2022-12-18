@@ -45,6 +45,7 @@ def test_decoder(
     context_seq_len: int,
     embed_dim: int,
 ) -> None:
+    """Test decoder's output shape."""
     # Hyperparameters.
     batch_size, vocab_size, dff = 32, 1_000, 780
 

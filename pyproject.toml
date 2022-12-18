@@ -64,7 +64,7 @@ tox = { version = "^4.0.11", python = "~=3.7, <3.11" }
 # Python style guide checker.
 pydocstyle = {extras = ["toml"], version = "^6.1.1"}
 # Python Library for Tom's Obvious, Minimal Language.
-toml = "^0.10.2"
+# toml = "^0.10.2"
 # Formats docstring to follow PEP 257.
 docformatter = {version = "^1.5.1", extras = ["tomli"]}
 
@@ -99,6 +99,13 @@ filterwarnings = [
   "ignore::DeprecationWarning",
 ]
 
+# Docformatter.
+[tool.docformatter]
+in-place = true
+recursive = true
+blank = true
+close-quotes-on-newline = true
+
 [tool.pydocstyle]
 convention = "google"
 add_ignore = [
@@ -113,15 +120,6 @@ add_ignore = [
   # First line should end with a period, question mark, or exclamation point.
   "D415",
 ]
-
-# Docformatter.
-[tool.docformatter]
-in-place = true
-check = true
-recursive = true
-blank = true
-close-quotes-on-newline = true
-# wrap-summaries = 30
 
 # Style hinting.
 [tool.mypy]

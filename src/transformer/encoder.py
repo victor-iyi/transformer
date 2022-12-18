@@ -13,6 +13,7 @@ class EncoderLayer(tf.keras.layers.Layer):
 
     Each encoder layer contains `GlobalSelfAttention` and `FeedForward`
     layer.
+
     """
 
     def __init__(
@@ -27,6 +28,7 @@ class EncoderLayer(tf.keras.layers.Layer):
             num_heads (int): Number of MultiHeadAttention heads.
             dff (int): Number of neurons for the feed forward layer.
             dropout (float, optional): Dropout rate. Defaults to 0.1.
+
         """
         super().__init__()
 
@@ -44,6 +46,7 @@ class EncoderLayer(tf.keras.layers.Layer):
 
         Returns:
             tf.Tensor - A Tensor of shape `(batch_size, seq_length, embedding_dim)`.
+
         """
         x = self.self_attention(x)
         x = self.ffn(x)
@@ -67,6 +70,7 @@ class Encoder(tf.keras.layers.Layer):
             dff (int): Number of neurons for the feed forward layer.
             vocab_size (int): Vocabulary size.
             dropout (float, optional): Dropout rate. Defaults to 0.1.
+
         """
         super().__init__()
         self.d_model = d_model
@@ -95,6 +99,7 @@ class Encoder(tf.keras.layers.Layer):
 
         Returns:
             tf.Tensor - Tensor of shape `(batch_size, seq_len, d_model)`.
+
         """
         # `x` is token-IDs shape: (batch, seq_len)
         x = self.pos_embedding(x)  # Shape (batch_size, seq_len, d_model)

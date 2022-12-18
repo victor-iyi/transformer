@@ -10,12 +10,14 @@ class Translator(tf.Module):
     """Translate Portuguese text to English text."""
 
     def __init__(self, tokenizers: Any, transformer: Transformer) -> None:
-        """
+        """Initialize a `Translator` from pre-trained tokenizers and
+        transformer.
 
         Arguments:
             tokenizers (object): Pre-trained tokenizer for Portuguese/English.
             transformer (Transformer): The model to predict English text given
                 Portuguese text.
+
         """
         super().__init__()
         self.tokenizers = tokenizers
@@ -26,7 +28,7 @@ class Translator(tf.Module):
         sentence: Union[str, tf.Tensor],
         max_length: int = 128,
     ) -> Tuple[Union[str, tf.Tensor], tf.Tensor, tf.Tensor]:
-        """"Predict English text given a Porutguese sentence.
+        """Predict English text given a Porutguese sentence.
 
         Arguments:
             sentence (str | tf.Tensor): Portuguese sentence.
@@ -35,6 +37,7 @@ class Translator(tf.Module):
         Returns:
             Tuple[str | tf.Tensor, tf.Tensor, tf.Tensor] -
                Predicted English text, output tokens, attention weights.
+
         """
         # The input sentence is Portuguese, hence adding the
         # `[START] and `[END]` tokens.

@@ -54,7 +54,6 @@ def train_test_model(
     hparams: hp.HParams,
 ) -> Tuple[np.ndarray, np.ndarray]:
     """Run a full training epoch."""
-
     learning_rate = CustomSchedule(hparams[HP_D_MODEL])
     optimizer = tf.keras.optimizer.Adam(
         learning_rate, beta_1=0.9, beta_2=0.98, epsilon=1e-9,
@@ -95,6 +94,7 @@ def train_test_model(
 
 
 def experiment() -> int:
+    """Start experiment to for hyperparameter tunning."""
     # Create summary.
     with tf.summary.create_file_writer(LOG_DIR).as_default():
         hp.hparams_config(

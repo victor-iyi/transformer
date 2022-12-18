@@ -9,6 +9,8 @@ from transformer.utils import positional_encoding
 
 
 class PositionalEmbedding(tf.keras.layers.Layer):
+    """Preseve the positional context of the embedding vector."""
+
     def __init__(self, vocab_size: int, d_model: int, length: int = 2048) -> None:
         """Positional embedding layer that looks-up a token's embedding vector
         and adds the position vector.
@@ -18,6 +20,7 @@ class PositionalEmbedding(tf.keras.layers.Layer):
             d_model (int): Dimension of the embedding vector.
             length (int, optional): Length of the input sequence.
                 Defaults to 2048.
+
         """
         super().__init__()
         self.d_model = d_model
@@ -37,6 +40,7 @@ class PositionalEmbedding(tf.keras.layers.Layer):
         Returns:
           tf.Tensor - None or a list of Tensor
             (one per output tensor of the layer).
+
         """
         return self.embedding.compute_mask(*args, **kwargs)
 
@@ -50,6 +54,7 @@ class PositionalEmbedding(tf.keras.layers.Layer):
         Returns:
             tf.Tensor - Word embeddings with positional context.
                 Returns same shape as input.
+
         """
         length = tf.shape(x)[1]
         x = self.embedding(x)

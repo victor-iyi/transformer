@@ -8,6 +8,12 @@ from transformer.encoder import Encoder
 
 
 class Transformer(tf.keras.Model):
+    """Transformer based on the paper "Attention is all you need" by.
+
+    *Vaswani et al. (2017)*
+
+    """
+
     def __init__(
         self, *,
         num_layers: int,
@@ -28,6 +34,7 @@ class Transformer(tf.keras.Model):
             input_vocab_size (int): Input vocabulary size.
             target_vocab_size (int): Target vocabulary size.
             dropout (float, optional): Dropout rate. Defaults to 0.1.
+
         """
         super().__init__()
         self.encoder = Encoder(
@@ -61,6 +68,7 @@ class Transformer(tf.keras.Model):
         Returns:
             tf.Tensor - A tensor of shape
                 `(batch_size, target_seq_length, target_vocab_size)`.
+
         """
         context, x = inputs
 

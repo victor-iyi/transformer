@@ -38,6 +38,7 @@ def test_encoder(
     embed_dim: int,
     dff: int,
 ) -> None:
+    """Test encoder's output shape."""
     batch_size, num_heads, vocab_size = 32, 8, 1_000
 
     # Sample data (dummy token IDs)

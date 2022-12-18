@@ -3,9 +3,17 @@ import tensorflow as tf
 
 class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
     """Custom learning rate scheduler according to the formula from the
-    original Transformer paper."""
+    original Transformer paper.
+    """
 
     def __init__(self, d_model: int, warmup_steps: int = 4000) -> None:
+        """Learning rate scheduler.
+
+        Arguments:
+            d_model (int): Embedding dimension.
+            warmup_steps (int): Warm up steps. Defaults to 4000.
+
+        """
         super().__init__()
 
         self.d_model = d_model
@@ -15,7 +23,6 @@ class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
 
     def __call__(self, step: int) -> float:
         """Custom scheduler."""
-
         step = tf.cast(step, dtype=tf.float32)
         arg1 = tf.math.rsqrt(step)
         arg2 = step * (self.warmup_steps ** -1.5)
@@ -32,6 +39,7 @@ def masked_loss(label: tf.Tensor, pred: tf.Tensor) -> float:
 
     Returns:
         float - Masked loss.
+
     """
     mask = label != 0
     loss_obj = tf.keras.losses.SparseCategoricalCrossentropy(
@@ -55,6 +63,7 @@ def masked_accuracy(label: tf.Tensor, pred: tf.Tensor) -> float:
 
     Returns:
         float - Masked accuracy.
+
     """
     pred = tf.argmax(pred, axis=2)
     label = tf.cast(label, pred.dtype)

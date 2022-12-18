@@ -7,6 +7,7 @@ from translate import Translator
 
 @pytest.mark.skip(reason='Not yet tested.')
 def test_translate() -> None:
+    """Test translation inference."""
     tokenizers = load_tokenizer()
     transformer = Transformer(
         num_layers=2,
@@ -28,6 +29,14 @@ def test_translate() -> None:
 def print_translation(
     sentence: str, tokens: tf.Tensor, ground_truth: str,
 ) -> None:
+    """Pretty print translated output.
+
+    Arguments:
+        sentence (str): A string or tf.Tensor of string `dtype`.
+        tokens (tf.Tensor): Output tokens.
+        ground_truth (str): The correct target output.
+
+    """
     print(f'{"Input:":15s}: {sentence}')
     print(f'{"Prediction:":15s}: {tokens.numpy().decode("utf-8")}')
     print(f'{"Ground truth":15s}: {ground_truth}')

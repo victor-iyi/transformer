@@ -15,6 +15,7 @@ class FeedForward(tf.keras.layers.Layer):
             d_model (int): Embedding dimension.
             dff (int): Number of neurons for the feed forward layer.
             dropout (float, optional): Dropout rate. Defaults to 0.1.
+
         """
         super().__init__()
         self.seq = tf.keras.Sequential([
@@ -34,6 +35,7 @@ class FeedForward(tf.keras.layers.Layer):
 
         Returns:
             tf.Tensor - Returns the same shape as the input.
+
         """
         x = self.add([x, self.seq(x)])
         x = self.layer_norm(x)

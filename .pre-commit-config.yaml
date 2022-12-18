@@ -42,13 +42,14 @@ repos:
     rev: v1.5.1
     hooks:
       - id: docformatter
-        args: [src --in-place]
+        additional_dependencies: [tomli]
 
   - repo: https://github.com/PyCQA/pydocstyle
     rev: 6.1.1
     hooks:
       - id: pydocstyle
-        args: [src]
+        additional_dependencies: [toml]
+        # args: [src]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.0.0

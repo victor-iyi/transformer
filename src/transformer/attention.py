@@ -7,13 +7,15 @@ import tensorflow as tf
 
 class BaseAttention(tf.keras.layers.Layer):
     """Base attention consists of a MultiHeadAttention, LayerNormalization and
-    Add layer."""
+    Add layer.
+    """
 
     def __init__(self, **kwargs) -> None:  # type: ignore[no-untyped-def]
         """Base class for MultiHeadAttention.
 
         Arguments:
             See arguments for `tf.keras.layers.MultiHeadAttention`.
+
         """
         super().__init__()
         self.mha = tf.keras.layers.MultiHeadAttention(**kwargs)
@@ -36,6 +38,7 @@ class CrossAttention(BaseAttention):
 
         Returns:
             tf.Tensor - A tensor of shape `(batch_size, query_length, embdding_dim)`
+
         """
         attn_output, attn_scores = self.mha(
             query=query,
@@ -60,6 +63,7 @@ class GlobalSelfAttention(BaseAttention):
 
     The query `x`, is passed to the `MultiHeadAttention` layer as the
     `query`, `key` & `value`.
+
     """
 
     def call(self, query: tf.Tensor) -> tf.Tensor:
@@ -71,6 +75,7 @@ class GlobalSelfAttention(BaseAttention):
 
         Returns:
             tf.Tensor - A tensor of shape `(batch_size, seq_length, embedding_dim)`
+
         """
         # The query is passed as Q, K & V for self-attention.
         attn_output = self.mha(query=query, value=query, key=query)
@@ -93,6 +98,7 @@ class CausalSelfAttention(BaseAttention):
 
         Returns:
             tf.Tensor - A tensor of shape `(batch_size, seq_length, embedding_dim)`.
+
         """
         attn_output = self.mha(
             query=query,

@@ -26,6 +26,7 @@ def positional_encoding(length: int, depth: Union[int, float]) -> tf.Tensor:
 
     Returns:
       tf.Tensor - Positional embedding of shape `(length, depth)`.
+
     """
     depth = depth / 2
 

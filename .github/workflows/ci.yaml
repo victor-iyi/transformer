@@ -41,8 +41,8 @@ jobs:
           use-pydocstyle: true
           use-mypy: true
           use-flake8: true
-          extra-autopep8-options: "--diff --recursive --aggressive"
-          extra-docformatter-options: "--check"
+          # extra-autopep8-options: "--diff --recursive --aggressive"
+          # extra-docformatter-options: "--check"
 
       # - name: Lint with flake8
       #   run: |

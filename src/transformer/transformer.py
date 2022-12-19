@@ -8,10 +8,8 @@ from transformer.encoder import Encoder
 
 
 class Transformer(tf.keras.Model):
-    """Transformer based on the paper "Attention is all you need" by.
-
-    *Vaswani et al. (2017)*
-
+    """Transformer based on the paper "Attention is all you need" by *Vaswani
+    et al (2017)*.
     """
 
     def __init__(

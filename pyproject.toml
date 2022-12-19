@@ -99,6 +99,13 @@ filterwarnings = [
   "ignore::DeprecationWarning",
 ]
 
+[tool.autopep8]
+recursive = true
+# in-place = true
+diff = true
+max_line_length = 120
+agressive = 3
+
 # Docformatter.
 [tool.docformatter]
 in-place = true

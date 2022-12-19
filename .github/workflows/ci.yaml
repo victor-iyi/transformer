@@ -36,12 +36,22 @@ jobs:
         uses: weibullguy/python-lint-plus@master
         with:
           python-root-list: "src"
-          use-isort: false
           use-docformatter: true
           use-autopep8: true
           use-pydocstyle: true
           use-mypy: true
           use-flake8: true
+          # Unused linters.
+          use-black: false
+          use-yapf: false
+          use-isort: false
+          use-pycodestyle: false
+          use-pylint: false
+          use-mccabe: false
+          use-radon: false
+          use-rstcheck: false
+          use-check-manifest: false
+          use-pyroma: false
           # extra-autopep8-options: "--diff --recursive --aggressive"
           # extra-docformatter-options: "--check"
 

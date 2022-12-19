@@ -36,6 +36,7 @@ jobs:
         uses: weibullguy/python-lint-plus@master
         with:
           python-root-list: "src"
+          use-isort: false
           use-docformatter: true
           use-autopep8: true
           use-pydocstyle: true

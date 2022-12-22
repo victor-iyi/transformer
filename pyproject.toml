@@ -85,6 +85,10 @@ optional = true
 [tool.poetry.group.example.dependencies]
 tensorflow-datasets = "^4.7.0"
 
+[tool.poetry.extras]
+# MacOS GPU support for Apple Silicon.
+silicon = ["tensorflow-metal"]
+
 [tool.poetry.urls]
 "Bug Tracker"  = "https://github.com/victor-iyi/transformer/issues"
 

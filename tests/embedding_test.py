@@ -1,5 +1,5 @@
-import numpy as np
 import pytest
+import tensorflow as tf
 from transformer.embedding import PositionalEmbedding
 from transformer.utils import positional_encoding
 
@@ -19,18 +19,22 @@ def test_positional_encoding(seq_length: int, embed_dim: int) -> None:
 
 
 @pytest.mark.parametrize(
-    'batch_size,seq_length,embed_dim',
+    'seq_length,embed_dim',
     (
-        (64, 78, 256),
-        (32, 128, 512),
+        (78, 256),
+        (128, 512),
     ),
 )
-def test_positional_embedding(batch_size: int, seq_length: int, embed_dim: int) -> None:
+def test_positional_embedding(seq_length: int, embed_dim: int) -> None:
     """Positional embedding outputs the correct shape."""
-    vocab_size = 1_000
-    # Random fake data.
-    data = np.random.randint(vocab_size, size=(batch_size, seq_length))
-    # Create positional encoding with vocab size of 10k.
-    embed = PositionalEmbedding(vocab_size=vocab_size, d_model=embed_dim)
 
-    assert embed(data).shape == (batch_size, seq_length, embed_dim)
+    # Create input of shape (None, seq_length).
+    data = tf.keras.Input(shape=(seq_length), dtype=tf.float32)
+
+    # Create positional encoding with vocab size of 1k.
+    embed = PositionalEmbedding(vocab_size=1_000, d_model=embed_dim)
+
+    # Expected output shape.
+    expected_shape = tf.TensorShape((None, seq_length, embed_dim))
+
+    assert embed(data).shape == expected_shape

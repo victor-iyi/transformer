@@ -14,16 +14,15 @@ from transformer.attention import GlobalSelfAttention
 )
 def test_cross_attention(query_length: int, context_length: int, embed_dim: int) -> None:
     """Check the shape of the cross attention layer's output."""
-    batch_size = 32
 
     # Create dummy query embedding vector.
-    query_embedding = tf.random.normal(
-        shape=(batch_size, query_length, embed_dim),
+    query_embedding = tf.keras.Input(
+        shape=(query_length, embed_dim),
         dtype=tf.float32,
     )
     # Create dummy context embedding vector.
-    context_embedding = tf.random.normal(
-        shape=(batch_size, context_length, embed_dim),
+    context_embedding = tf.keras.Input(
+        shape=(context_length, embed_dim),
         dtype=tf.float32,
     )
 
@@ -31,7 +30,9 @@ def test_cross_attention(query_length: int, context_length: int, embed_dim: int)
     cross_attn = CrossAttention(num_heads=2, key_dim=embed_dim)
     output = cross_attn(query=query_embedding, context=context_embedding)
 
-    assert output.shape == (batch_size, query_length, embed_dim)
+    # Expected output shape.
+    expected_shape = tf.TensorShape((None, query_length, embed_dim))
+    assert output.shape == expected_shape
 
 
 @pytest.mark.parametrize(

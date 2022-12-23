@@ -62,6 +62,7 @@ def test_decoder(
 ) -> None:
     """Test decoder's output shape."""
     # Hyperparameters.
+    vocab_size = 1_000
 
     # Target tokens.
     target = input_data(shape=(target_seq_len,))
@@ -71,12 +72,13 @@ def test_decoder(
         seq_len=context_seq_len,
         embed_dim=embed_dim,
         dtype=tf.float32,
+        vocab_size=vocab_size,
     )
 
     # Decoder.
     decoder = Decoder(
         num_layers=num_layers, d_model=embed_dim,
-        num_heads=2, dff=dff, vocab_size=1_000,
+        num_heads=2, dff=dff, vocab_size=vocab_size,
     )
     output = decoder(target, context_embedding)
     expected_shape = tf.TensorShape((None, target_seq_len, embed_dim))

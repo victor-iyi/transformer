@@ -5,6 +5,7 @@
 import os
 from typing import Any
 from typing import Tuple
+from typing import Union
 
 import tensorflow as tf
 import tensorflow_datasets as tfds
@@ -46,7 +47,10 @@ def load_tokenizer(
     print(f'Loading model from {tokenizer_path}')
 
     # Load tokenizer.
-    tokenizers = tf.saved_model.load(tokenizer_path)
+    options = tf.saved_model.LoadOptions(
+        experimental_io_device='/job:localhost',
+    )
+    tokenizers = tf.saved_model.load(tokenizer_path, options=options)
 
     return tokenizers
 
@@ -54,9 +58,13 @@ def load_tokenizer(
 def load_data(
     name: str = 'ted_hrlr_translate/pt_to_en',
     tokenizer_name: str = 'ted_hrlr_translate_pt_en_converter',
+    return_tokenizer: bool = True,
     cache_dir: str = 'data', cache_sub_dir: str = 'translate',
     max_tokens: int = 128, batch_size: int = 64, buffer_size: int = 20_000,
-) -> Tuple[Tuple[tf.data.Dataset, tf.data.Dataset], Any]:
+) -> Union[
+    Tuple[Tuple[tf.data.Dataset, tf.data.Dataset], Any],
+    Tuple[tf.data.Dataset, tf.data.Dataset],
+]:
     """Download, tokenize and prepare data into train & validation batches.
 
     Arguments:
@@ -64,6 +72,8 @@ def load_data(
             Defaults to `'ted_hrlr_translate/pt_to_en'`.
         tokenizer_name (str, optional): Name of the tokenizer.
             Defaults to `'ted_hrlr_translate_pt_en_converter'`.
+        return_tokenizer (bool, optiona): Whether to return tokenizer or not.
+            Defaults to True.
         cache_dir (str, optional): Base directory to download tokenizer.
             Defaults to `data/`.
         cache_sub_dir (str, optional): Sub directory. Usually a child of `cahce_dir`.
@@ -76,13 +86,20 @@ def load_data(
             Defaults to 20,000.
 
     Returns:
-        ((tf.data.Dataset, tf.data.Dataset), (int, int)):
-            (Train dataset, validation dataset), (input_vocab_size, target_vocab_size)
+        ((tf.data.Dataset, tf.data.Dataset), Tokenizer):
+            ((Train dataset, validation dataset), tokenizer).
+            - If `return_tokenizer` is `True`.
+        (tf.data.Dataset, tf.data.Dataset):
+            (Train dataset, validation dataset).
+            - If `return_tokenizer` is False.
 
     """
     # Load dataset from tensorflow-datasets.
     examples, _ = tfds.load(name, with_info=True, as_supervised=True)
     train_examples, val_examples = examples['train'], examples['validation']
+
+    print(train_examples)
+    print(val_examples)
 
     # Load tokenizer.
     tokenizers = load_tokenizer(
@@ -139,7 +156,10 @@ def load_data(
     train_batches = make_batches(train_examples)
     val_batches = make_batches(val_examples)
 
-    return (train_batches, val_batches), tokenizers
+    if return_tokenizer:
+        return (train_batches, val_batches), tokenizers
+
+    return train_batches, val_batches
 
 
 if __name__ == '__main__':

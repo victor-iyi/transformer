@@ -1,4 +1,3 @@
-import numpy as np
 import pytest
 import tensorflow as tf
 from transformer.encoder import Encoder
@@ -6,43 +5,53 @@ from transformer.encoder import EncoderLayer
 
 
 @pytest.mark.parametrize(
-    'embed_dim,dff',
+    'seq_length, embed_dim, dff',
     (
-        (32, 64),
-        (128, 256),
+        (50, 32, 64),
+        (100, 128, 256),
     ),
 )
-def test_encoder_layer(embed_dim: int, dff: int) -> None:
+def test_encoder_layer(
+    get_embedding,
+    seq_length: int,
+    embed_dim: int,
+    dff: int,
+) -> None:
     """Test encoder layer's output shape."""
-    # Hyperparameters.
-    batch_size, seq_length = 32, 78
-
     # Sample embedding.
-    embed_shape = (batch_size, seq_length, embed_dim)
-    embedding = tf.random.normal(shape=embed_shape)
+    embedding = get_embedding(
+        seq_len=seq_length,
+        embed_dim=embed_dim,
+    )
 
-    encoder_layer = EncoderLayer(d_model=embed_dim, num_heads=2, dff=dff)
-    assert encoder_layer(embedding).shape == embed_shape
+    encoder_layer = EncoderLayer(
+        d_model=embed_dim, num_heads=2, dff=dff,
+    )
+
+    # Expected output shape.
+    expected_shape = tf.TensorShape((None, seq_length, embed_dim))
+    assert encoder_layer(embedding).shape == expected_shape
 
 
 @pytest.mark.parametrize(
-    'num_layers,seq_len,embed_dim,dff',
+    'num_layers, num_heads, seq_len, embed_dim, dff',
     (
-        (1, 64, 32, 256),
-        (3, 82, 64, 256),
+        (1, 2, 64, 32, 256),
+        (3, 6,  82, 64, 256),
     ),
 )
 def test_encoder(
+    input_data,
     num_layers: int,
+    num_heads: int,
     seq_len: int,
     embed_dim: int,
     dff: int,
 ) -> None:
     """Test encoder's output shape."""
-    batch_size, num_heads, vocab_size = 32, 8, 1_000
 
     # Sample data (dummy token IDs)
-    data = np.random.randint(vocab_size, size=(batch_size, seq_len))
+    data = input_data(shape=(seq_len,), dtype=tf.float32)
 
     # Multiple encoder layers.
     encoder = Encoder(
@@ -50,7 +59,10 @@ def test_encoder(
         d_model=embed_dim,
         num_heads=num_heads,
         dff=dff,
-        vocab_size=vocab_size,
+        vocab_size=1_000,
     )
     output = encoder(data, training=False)
-    assert output.shape == (batch_size, seq_len, embed_dim)
+
+    # Expected output shape.
+    expected_shape = tf.TensorShape((None, seq_len, embed_dim))
+    assert output.shape == expected_shape

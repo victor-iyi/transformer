@@ -52,7 +52,7 @@ def train_test_model(
     input_vocab_size: int,
     target_vocab_size: int,
     hparams: hp.HParams,
-) -> Tuple[np.ndarray, np.ndarray]:
+) -> Tuple[np.float32, np.float32]:
     """Run a full training epoch."""
     learning_rate = CustomSchedule(hparams[HP_D_MODEL])
     optimizer = tf.keras.optimizer.Adam(

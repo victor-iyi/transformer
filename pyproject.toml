@@ -137,8 +137,8 @@ add_ignore = [
 # Style hinting.
 [tool.mypy]
 files = [
-  "src/**.py",
-  "examples/**.py",
+  "src/",
+  "examples/",
 ]
 exclude = [
   "tests/",
@@ -164,6 +164,9 @@ warn_return_any = true
 warn_unreachable = true
 disallow_subclassing_any = false
 disallow_untyped_decorators = false
+# plugins = [
+#   "numpy.typing.mypy_plugin",
+# ]
 
 # [[tool.mypy.overrides]]
 # module = [

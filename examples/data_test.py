@@ -1,5 +1,28 @@
+from typing import Any
+from typing import Tuple
+from typing import Union
+
 import pytest
+import tensorflow as tf
 from data import load_data
+from data import load_tokenizer
+
+
+@pytest.fixture
+def tokenizer() -> Any:
+    """Fixture to load Portuguese/English tokenizers."""
+    return load_tokenizer()
+
+
+@pytest.fixture
+def data() -> Union[
+    Tuple[Tuple[tf.data.Dataset, tf.data.Dataset], Any],
+    Tuple[tf.data.Dataset, tf.data.Dataset],
+]:
+    """Fixture to load the train & validation dataset with tokenizers."""
+    # Download and process data.
+    (train_ds, val_ds), tokenizer = load_data()
+    return (train_ds, val_ds), tokenizer
 
 
 @pytest.mark.skip(reason='Untested behaviour')

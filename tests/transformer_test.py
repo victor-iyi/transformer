@@ -11,23 +11,18 @@ from transformer.transformer import Transformer
     ),
 )
 def test_transformer(
-        input_vocab_size: int,
-        target_vocab_size: int,
-        input_seq_len: int,
-        target_seq_len: int,
+    input_data,
+    input_vocab_size: int,
+    target_vocab_size: int,
+    input_seq_len: int,
+    target_seq_len: int,
 ) -> None:
     """Test transformer output shape."""
     # Hyperparameters.
     num_layers, num_heads, d_model, dff = 3, 3, 256, 512
 
-    input_token = tf.keras.Input(
-        shape=[input_seq_len],
-        dtype=tf.int32,
-    )
-    target_token = tf.keras.Input(
-        shape=[target_seq_len],
-        dtype=tf.int32,
-    )
+    input_token = input_data(shape=(input_seq_len,))
+    target_token = input_data(shape=(target_seq_len,))
 
     transformer = Transformer(
         num_layers=num_layers,

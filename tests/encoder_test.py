@@ -12,15 +12,16 @@ from transformer.encoder import EncoderLayer
     ),
 )
 def test_encoder_layer(
+    get_embedding,
     seq_length: int,
     embed_dim: int,
     dff: int,
 ) -> None:
     """Test encoder layer's output shape."""
     # Sample embedding.
-    embedding = tf.keras.Input(
-        shape=(seq_length, embed_dim),
-        dtype=tf.float32,
+    embedding = get_embedding(
+        seq_len=seq_length,
+        embed_dim=embed_dim,
     )
 
     encoder_layer = EncoderLayer(
@@ -40,6 +41,7 @@ def test_encoder_layer(
     ),
 )
 def test_encoder(
+    input_data,
     num_layers: int,
     num_heads: int,
     seq_len: int,
@@ -49,7 +51,7 @@ def test_encoder(
     """Test encoder's output shape."""
 
     # Sample data (dummy token IDs)
-    data = tf.keras.Input(shape=[seq_len], dtype=tf.int32)
+    data = input_data(shape=(seq_len,), dtype=tf.float32)
 
     # Multiple encoder layers.
     encoder = Encoder(

@@ -12,6 +12,7 @@ from transformer.decoder import DecoderLayer
     ),
 )
 def test_decoder_layer(
+    get_embedding,
     target_seq_len: int,
     context_seq_len: int,
     embed_dim: int,
@@ -20,12 +21,14 @@ def test_decoder_layer(
     """Test decoder layer's output shape."""
 
     # Sample input.
-    query_embedding = tf.keras.Input(
-        shape=(target_seq_len, embed_dim),
+    query_embedding = get_embedding(
+        seq_len=target_seq_len,
+        embed_dim=embed_dim,
         dtype=tf.float32,
     )
-    context_embedding = tf.keras.Input(
-        shape=(context_seq_len, embed_dim),
+    context_embedding = get_embedding(
+        seq_len=context_seq_len,
+        embed_dim=embed_dim,
         dtype=tf.float32,
     )
 
@@ -49,6 +52,8 @@ def test_decoder_layer(
     ),
 )
 def test_decoder(
+    input_data,
+    get_embedding,
     num_layers: int,
     target_seq_len: int,
     context_seq_len: int,
@@ -58,13 +63,13 @@ def test_decoder(
     """Test decoder's output shape."""
     # Hyperparameters.
 
-    # Sample target.
-    target = tf.keras.Input(
-        shape=[target_seq_len],
-        dtype=tf.int32,
-    )
-    context_embedding = tf.keras.Input(
-        shape=(context_seq_len, embed_dim),
+    # Target tokens.
+    target = input_data(shape=(target_seq_len,))
+
+    # Context embedding.
+    context_embedding = get_embedding(
+        seq_len=context_seq_len,
+        embed_dim=embed_dim,
         dtype=tf.float32,
     )
 

@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 import tensorflow as tf
 from transformer.attention import CausalSelfAttention
@@ -13,7 +15,7 @@ from transformer.attention import GlobalSelfAttention
     ),
 )
 def test_cross_attention(
-    get_embedding,
+    get_embedding: Callable[..., tf.Tensor],
     query_length: int,
     context_length: int,
     embed_dim: int,
@@ -50,7 +52,7 @@ def test_cross_attention(
     ),
 )
 def test_global_attention(
-    get_embedding,
+    get_embedding: Callable[..., tf.Tensor],
     seq_len: int,
     embed_dim: int,
 ) -> None:
@@ -78,7 +80,7 @@ def test_global_attention(
     ),
 )
 def test_casual_attention(
-    get_embedding,
+    get_embedding: Callable[..., tf.Tensor],
     seq_len: int,
     embed_dim: int,
 ) -> None:

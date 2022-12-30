@@ -41,7 +41,7 @@ def run(
             target_vocab_size=target_vocab_size,
             hparams=hparams,
         )
-        for i, (loss, val_loss) in enumerate(zip(epoch_loss, epoch_val_loss), start=1):
+        for i, (loss, val_loss) in enumerate(zip(epoch_loss, epoch_val_loss), start=1):  # type: ignore[call-overload]
             tf.summary.scalar('loss', loss, step=i)
             tf.summary.scalar('val_loss', val_loss, step=i)
 

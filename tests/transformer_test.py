@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 import tensorflow as tf
 from transformer.transformer import Transformer
@@ -11,7 +13,7 @@ from transformer.transformer import Transformer
     ),
 )
 def test_transformer(
-    input_data,
+    input_data: Callable[..., tf.Tensor],
     input_vocab_size: int,
     target_vocab_size: int,
     input_seq_len: int,

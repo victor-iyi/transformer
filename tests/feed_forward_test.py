@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 import tensorflow as tf
 from transformer.feed_forward import FeedForward
@@ -11,7 +13,7 @@ from transformer.feed_forward import FeedForward
     ),
 )
 def test_feed_forward(
-    get_embedding,
+    get_embedding: Callable[..., tf.Tensor],
     seq_length: int,
     embed_dim: int,
     dff: int,

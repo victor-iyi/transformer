@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 import tensorflow as tf
 from transformer.decoder import Decoder
@@ -12,7 +14,7 @@ from transformer.decoder import DecoderLayer
     ),
 )
 def test_decoder_layer(
-    get_embedding,
+    get_embedding: Callable[..., tf.Tensor],
     target_seq_len: int,
     context_seq_len: int,
     embed_dim: int,
@@ -52,8 +54,8 @@ def test_decoder_layer(
     ),
 )
 def test_decoder(
-    input_data,
-    get_embedding,
+    input_data: Callable[..., tf.Tensor],
+    get_embedding: Callable[..., tf.Tensor],
     num_layers: int,
     target_seq_len: int,
     context_seq_len: int,

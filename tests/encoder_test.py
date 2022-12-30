@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 import tensorflow as tf
 from transformer.encoder import Encoder
@@ -12,7 +14,7 @@ from transformer.encoder import EncoderLayer
     ),
 )
 def test_encoder_layer(
-    get_embedding,
+    get_embedding: Callable[..., tf.Tensor],
     seq_length: int,
     embed_dim: int,
     dff: int,
@@ -41,7 +43,7 @@ def test_encoder_layer(
     ),
 )
 def test_encoder(
-    input_data,
+    input_data: Callable[..., tf.Tensor],
     num_layers: int,
     num_heads: int,
     seq_len: int,

@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 import tensorflow as tf
 from transformer.embedding import PositionalEmbedding
@@ -29,7 +31,7 @@ def test_positional_encoding(
     ),
 )
 def test_positional_embedding(
-    input_data,
+    input_data: Callable[..., tf.Tensor],
     seq_len: int,
     embed_dim: int,
 ) -> None:

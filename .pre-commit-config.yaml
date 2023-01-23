@@ -22,7 +22,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
       - id: python-use-type-annotations
 
@@ -40,13 +40,13 @@ repos:
         args: [--diff, --max-line-length=120, --aggressive]
 
   - repo: https://github.com/PyCQA/docformatter
-    rev: v1.5.1
+    rev: v1.6.0.rc1
     hooks:
       - id: docformatter
         additional_dependencies: [tomli]
 
   - repo: https://github.com/PyCQA/pydocstyle
-    rev: 6.1.1
+    rev: 6.3.0
     hooks:
       - id: pydocstyle
         additional_dependencies: [toml]

@@ -62,9 +62,7 @@ pre-commit = "^2.20.0"
 # Generic viirtualenv management and test cli tool.
 tox = { version = "^4.0.11", python = "~=3.7, <3.11" }
 # Python style guide checker.
-pydocstyle = {extras = ["toml"], version = "^6.1.1"}
-# Python Library for Tom's Obvious, Minimal Language.
-# toml = "^0.10.2"
+pydocstyle = {extras = ["tomli"], version = "^6.3.0"}
 # Formats docstring to follow PEP 257.
 docformatter = {version = "^1.5.1", extras = ["tomli"]}
 

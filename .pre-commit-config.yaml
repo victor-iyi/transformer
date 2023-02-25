@@ -49,7 +49,7 @@ repos:
     rev: 6.3.0
     hooks:
       - id: pydocstyle
-        additional_dependencies: [toml]
+        additional_dependencies: [tomli]
         # args: [src]
 
   - repo: https://github.com/PyCQA/flake8

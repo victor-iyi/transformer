@@ -17,8 +17,11 @@ def positional_encoding(length: int, depth: Union[int, float]) -> tf.Tensor:
 
     Here's the formular for calculating the postional encoding:
 
-    PE_(pos, 2_i) = sin(pos / 10000^(2_i/d_model))
-    PE_(pos, 2_i) = cos(pos / 10000^(2_i/d_model))
+    $$
+        PE_(pos, 2_i) = sin(pos / 10000^(2_i/d_model))
+
+        PE_(pos, 2_i) = cos(pos / 10000^(2_i/d_model))
+    $$
 
     Arguments:
       length (int): Length of the input sequence.
